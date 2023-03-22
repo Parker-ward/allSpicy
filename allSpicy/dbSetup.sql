@@ -24,11 +24,13 @@ INSERT INTO
         title,
         category,
         instructions,
+        `creatorId`,
         `imgUrl`
-    );
+    )
 VALUES (
-        'hotdogs',
-        'easyMeals',
-        'open package, place in microwave, cook for 30 seconds',
-        'https://media.istockphoto.com/id/1408284874/photo/delicious-hot-dog-in-male-hand-on-white.jpg?b=1&s=170667a&w=0&k=20&c=CZvMskynC6lqoVhtiVeE4qvBI3mwBshdV6lsovFsVPA='
+        'carrots',
+        'healthy',
+        'eat',
+        '64056596b253fcef8a1f4da0',
+        'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fycm90c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     );
