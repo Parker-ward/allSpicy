@@ -1,4 +1,3 @@
-
 {
   "folders": [
     {
@@ -8,7 +7,11 @@
     {
       "path": "allSpicy",
       "name": "server"
-    },{"path":".github/workflows", "name":"workflows"}
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
+    }
   ],
   "settings": {
     "editor.suggestSelection": "first",
@@ -42,24 +45,24 @@
       "editor.defaultFormatter": "Vue.volar"
     },
     "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#f8b3fe",
-      "activityBar.background": "#f8b3fe",
+      "activityBar.activeBackground": "#909fae",
+      "activityBar.background": "#909fae",
       "activityBar.foreground": "#15202b",
       "activityBar.inactiveForeground": "#15202b99",
-      "activityBarBadge.background": "#7e7402",
+      "activityBarBadge.background": "#815e70",
       "activityBarBadge.foreground": "#e7e7e7",
       "commandCenter.border": "#15202b99",
-      "sash.hoverBorder": "#f8b3fe",
-      "statusBar.background": "#f480fe",
+      "sash.hoverBorder": "#909fae",
+      "statusBar.background": "#728699",
       "statusBar.foreground": "#15202b",
-      "statusBarItem.hoverBackground": "#f04dfe",
-      "statusBarItem.remoteBackground": "#f480fe",
+      "statusBarItem.hoverBackground": "#5b6c7d",
+      "statusBarItem.remoteBackground": "#728699",
       "statusBarItem.remoteForeground": "#15202b",
-      "titleBar.activeBackground": "#f480fe",
+      "titleBar.activeBackground": "#728699",
       "titleBar.activeForeground": "#15202b",
-      "titleBar.inactiveBackground": "#f480fe99",
+      "titleBar.inactiveBackground": "#72869999",
       "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#f480fe"
+    "peacock.color": "#728699"
   }
 }
