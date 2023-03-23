@@ -58,5 +58,10 @@ namespace allSpicy.Repositories
       }, new { id }).FirstOrDefault();
       return recipe;
     }
+
+    internal int Update(Recipe original)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

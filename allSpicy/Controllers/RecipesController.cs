@@ -19,7 +19,7 @@ namespace allSpicy.Controllers
       try
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        List<Recipe> recipes = _recipesService.Get(userInfo?.Id);
+        List<Recipe> recipes = _recipesService.Find(userInfo?.Id);
         return Ok(recipes);
       }
       catch (Exception e)
@@ -29,13 +29,12 @@ namespace allSpicy.Controllers
     }
 
     [HttpGet("{id}")]
-
     public async Task<ActionResult<Recipe>> Find(int id)
     {
       try
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        Recipe recipe = _recipesService.GetOne(id, userInfo.Id);
+        Recipe recipe = _recipesService.Find(id, userInfo.Id);
         return Ok(recipe);
       }
       catch (Exception e)
@@ -58,6 +57,24 @@ namespace allSpicy.Controllers
         recipe.Creator = userInfo;
         return Ok(recipe);
 
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    async public Task<ActionResult<Recipe>> EditRecipe(int id, [FromBody] Recipe recipeData)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        recipeData.CreatorId = userInfo.Id;
+        Recipe recipe = _recipesService.EditRecipe(id, recipeData, userInfo);
+        recipe.Creator = userInfo;
+        return Ok(recipe);
       }
       catch (Exception e)
       {
