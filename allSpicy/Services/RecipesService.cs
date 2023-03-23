@@ -9,11 +9,12 @@ namespace allSpicy.Services
       _repo = repo;
     }
 
-    // internal List<Recipe> Find()
-    // {
-    //   List<Recipe> recipes = _repo.FindAll();
-    //   return recipes;
-    // }
+    internal Recipe CreateRecipe(Recipe recipeData)
+    {
+      Recipe recipe = _repo.CreateRecipe(recipeData);
+      return recipe;
+    }
+
 
     internal List<Recipe> Get(string userId)
     {

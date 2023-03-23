@@ -9,16 +9,20 @@ namespace allSpicy.Repositories
       _db = db;
     }
 
-    // internal List<Recipe> FindAll()
-    // {
-    //   string sql = @"
-    //   SELECT
-    //   *
-    //   FROM recipes;
-    //   ";
-    //   List<Recipe> recipes = _db.Query<Recipe>(sql).ToList();
-    //   return recipes;
-    // }
+    internal Recipe CreateRecipe(Recipe recipeData)
+    {
+      string sql = @"
+        INSERT INTO recipes
+        (creatorId, title, category, instructions, imgUrl)
+        VALUES
+        (@creatorId, @title, @category, @instructions, @imgUrl);
+        SELECT LAST_INSERT_ID();
+        ";
+      int id = _db.ExecuteScalar<int>(sql, recipeData);
+      recipeData.Id = id;
+      return recipeData;
+    }
+
 
     internal List<Recipe> GetAll()
     {
