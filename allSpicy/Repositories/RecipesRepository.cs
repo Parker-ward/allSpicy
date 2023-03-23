@@ -13,9 +13,9 @@ namespace allSpicy.Repositories
     {
       string sql = @"
         INSERT INTO recipes
-        (creatorId, title, category, instructions, imgUrl)
+        (creatorId, title, category, instructions, img)
         VALUES
-        (@creatorId, @title, @category, @instructions, @imgUrl);
+        (@creatorId, @title, @category, @instructions, @img);
         SELECT LAST_INSERT_ID();
         ";
       int id = _db.ExecuteScalar<int>(sql, recipeData);
@@ -39,6 +39,24 @@ namespace allSpicy.Repositories
         return recipe;
       }).ToList();
       return recipes;
+    }
+
+    internal Recipe GetOne(int id)
+    {
+      string sql = @"
+    SELECT
+    rec.*,
+    acct.*
+    FROM recipes rec
+    JOIN accounts acct ON rec.creatorId = acct.id
+    WHERE rec.id = @id;
+    ";
+      Recipe recipe = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, prof) =>
+      {
+        recipe.Creator = prof;
+        return recipe;
+      }, new { id }).FirstOrDefault();
+      return recipe;
     }
   }
 }

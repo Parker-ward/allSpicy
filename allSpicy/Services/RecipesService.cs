@@ -21,5 +21,12 @@ namespace allSpicy.Services
       List<Recipe> recipes = _repo.GetAll();
       return recipes;
     }
+
+    internal Recipe GetOne(int id, string userId)
+    {
+      Recipe recipe = _repo.GetOne(id);
+      if (recipe == null) throw new Exception("Nope");
+      return recipe;
+    }
   }
 }
