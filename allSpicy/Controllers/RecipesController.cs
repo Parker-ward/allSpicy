@@ -5,18 +5,21 @@ namespace allSpicy.Controllers
   public class RecipesController : ControllerBase
   {
     private readonly RecipesService _recipesService;
+    private readonly Auth0Provider _auth;
 
-    public RecipesController(RecipesService recipesService)
+    public RecipesController(RecipesService recipesService, Auth0Provider auth)
     {
       _recipesService = recipesService;
+      _auth = auth;
     }
 
     [HttpGet]
-    public ActionResult<List<Recipe>> Find()
+    async public Task<ActionResult<List<Recipe>>> Find()
     {
       try
       {
-        List<Recipe> recipes = _recipesService.Find();
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<Recipe> recipes = _recipesService.Get(userInfo?.Id);
         return Ok(recipes);
       }
       catch (Exception e)

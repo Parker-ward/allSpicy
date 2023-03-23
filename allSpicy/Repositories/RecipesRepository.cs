@@ -9,14 +9,31 @@ namespace allSpicy.Repositories
       _db = db;
     }
 
-    internal List<Recipe> FindAll()
+    // internal List<Recipe> FindAll()
+    // {
+    //   string sql = @"
+    //   SELECT
+    //   *
+    //   FROM recipes;
+    //   ";
+    //   List<Recipe> recipes = _db.Query<Recipe>(sql).ToList();
+    //   return recipes;
+    // }
+
+    internal List<Recipe> GetAll()
     {
       string sql = @"
       SELECT
-      *
-      FROM recipes;
+      res.*,
+      acct.*
+      FROM recipes res
+      JOIN accounts acct ON res.creatorId = acct.id;
       ";
-      List<Recipe> recipes = _db.Query<Recipe>(sql).ToList();
+      List<Recipe> recipes = _db.Query<Recipe, Profile, Recipe>(sql, (recipe, prof) =>
+      {
+        recipe.Creator = prof;
+        return recipe;
+      }).ToList();
       return recipes;
     }
   }
