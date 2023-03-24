@@ -59,9 +59,19 @@ namespace allSpicy.Repositories
       return recipe;
     }
 
-    internal int Update(Recipe original)
+    internal int UpdateRecipe(Recipe original)
     {
-      throw new NotImplementedException();
+      string sql = @"
+      UPDATE recipes
+      SET
+      title = @title,
+      category = @category,
+      instructions = @instructions,
+      img = @img
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, original);
+      return rows;
     }
   }
 }

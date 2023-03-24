@@ -22,7 +22,7 @@ namespace allSpicy.Services
       original.Category = recipeData.Category != null ? recipeData.Category : original.Category;
       original.Instructions = recipeData.Instructions != null ? recipeData.Instructions : original.Instructions;
       original.Img = recipeData.Img != null ? recipeData.Img : original.Img;
-      int rowsAffected = _repo.Update(original);
+      int rowsAffected = _repo.UpdateRecipe(original);
       if (rowsAffected == 0) throw new Exception("could not modify");
       if (rowsAffected > 1) throw new Exception("Something went wrong");
       return original;
