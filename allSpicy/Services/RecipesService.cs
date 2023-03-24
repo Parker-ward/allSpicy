@@ -15,6 +15,14 @@ namespace allSpicy.Services
       return recipe;
     }
 
+    internal string DeleteRecipe(int id, Account userInfo)
+    {
+      Recipe recipe = this.Find(id, userInfo.Id);
+      bool result = _repo.DeleteRecipe(id);
+      if (!result) throw new Exception("something went wrong with trying to delete");
+      return "deleted";
+    }
+
     internal Recipe EditRecipe(int id, Recipe recipeData, Account userInfo)
     {
       Recipe original = this.Find(id, userInfo.Id);

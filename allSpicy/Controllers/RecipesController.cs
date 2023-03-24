@@ -81,5 +81,21 @@ namespace allSpicy.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    async public Task<ActionResult<string>> DeleteRecipe(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string message = _recipesService.DeleteRecipe(id, userInfo);
+        return Ok(message);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

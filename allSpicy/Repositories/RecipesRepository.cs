@@ -23,6 +23,14 @@ namespace allSpicy.Repositories
       return recipeData;
     }
 
+    internal bool DeleteRecipe(int id)
+    {
+      string sql = @"
+        DELETE FROM recipes WHERE id = @id;
+        ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
 
     internal List<Recipe> GetAll()
     {
