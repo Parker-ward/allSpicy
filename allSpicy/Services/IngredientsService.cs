@@ -20,5 +20,13 @@ namespace allSpicy.Services
       List<Ingredient> ingredients = _repo.FindByRecipe(recipeId);
       return ingredients;
     }
+
+    internal string removeIngredient(int recipeId, string userId)
+    {
+      Ingredient ingredient = _repo.FindIngredient(recipeId);
+      if (ingredient.CreatorId != userId) throw new Exception($"not ingredient with that {recipeId}");
+      _repo.RemoveIngredient(recipeId);
+      return "ingredient has been deleted";
+    }
   }
 }

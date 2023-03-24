@@ -13,9 +13,9 @@ namespace allSpicy.Repositories
     {
       string sql = @"
       INSERT INTO ingredients
-      (name, quantity, recipeId)
+      (name, quantity, recipeId, creatorId)
       VALUES
-      (@name, @quantity, @recipeId);
+      (@name, @quantity, @recipeId, @creatorId);
       SELECT LAST_INSERT_ID();
       ";
       int id = _db.ExecuteScalar<int>(sql, ingredientData);
@@ -33,6 +33,26 @@ namespace allSpicy.Repositories
       ";
       List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
       return ingredients;
+    }
+
+    internal Ingredient FindIngredient(int recipeId)
+    {
+      string sql = @"
+      SELECT
+      ing.*
+      FROM ingredients ing
+      WHERE ing.id = @recipeId
+      ";
+      Ingredient ingredients = _db.Query<Ingredient>(sql, new { recipeId }).FirstOrDefault();
+      return ingredients;
+    }
+
+    internal void RemoveIngredient(int recipeId)
+    {
+      string sql = @"
+      DELETE FROM ingredients WHERE id = @recipeId;
+      ";
+      int rows = _db.Execute(sql, new { recipeId });
     }
   }
 }

@@ -42,12 +42,24 @@ CREATE TABLE
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         recipeId INT NOT NULL,
         quantity VARCHAR(255) NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
         name VARCHAR(25) NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 DROP TABLE ingredients;
 
 INSERT INTO
-    ingredients (quantity, name, `recipeId`)
-VALUES (4, 'slices of bread', 1)
+    ingredients (
+        quantity,
+        name,
+        `recipeId`,
+        `creatorId`
+    )
+VALUES (
+        '4',
+        'slices of bread',
+        '1',
+        '64056596b253fcef8a1f4da0'
+    );

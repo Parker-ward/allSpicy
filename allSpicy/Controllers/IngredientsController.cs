@@ -20,6 +20,7 @@ namespace allSpicy.Controllers
       try
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        ingredientData.CreatorId = userInfo.Id;
         Ingredient ingredient = _ingredientService.CreateIngredient(ingredientData);
         ingredient.Creator = userInfo;
         return Ok(ingredient);
@@ -30,5 +31,21 @@ namespace allSpicy.Controllers
       }
     }
 
+    [HttpDelete("{id}")]
+    [Authorize]
+
+    async public Task<ActionResult<String>> RemoveIngredient(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string message = _ingredientService.removeIngredient(id, userInfo.Id);
+        return Ok(message);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
