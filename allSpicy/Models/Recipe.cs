@@ -10,4 +10,9 @@ namespace allSpicy.Models
     public string Img { get; set; }
     public Profile Creator { get; set; }
   }
+
+  public class FavoriteRecipe : Recipe
+  {
+    public int FavoriteId { get; set; }
+  }
 }

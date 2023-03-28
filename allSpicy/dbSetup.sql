@@ -12,7 +12,7 @@ CREATE TABLE
     recipes(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         creatorId VARCHAR(255) NOT NULL,
-        title VARCHAR(25) NOT NULL,
+        title VARCHAR(255) NOT NULL,
         instructions VARCHAR(255) NOT NULL,
         img VARCHAR(500) NOT NULL,
         category VARCHAR(50) NOT NULL,
@@ -20,6 +20,8 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 DROP TABLE recipes;
+
+ALTER TABLE recipes ALTER COLUMN title VARCHAR(255);
 
 INSERT INTO
     recipes (
@@ -63,3 +65,18 @@ VALUES (
         '1',
         '64056596b253fcef8a1f4da0'
     );
+
+CREATE TABLE
+    favorites(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        accountId VARCHAR(255) NOT NULL,
+        recipeId INT NOT NULL,
+        FOREIGN Key (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE favorites;
+
+INSERT INTO
+    favorites(creatorId, recipeId)
+VALUES ('64056596b253fcef8a1f4da0', 1);
