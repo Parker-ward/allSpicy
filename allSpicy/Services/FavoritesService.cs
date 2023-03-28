@@ -22,5 +22,14 @@ namespace allSpicy.Services
       List<FavoriteRecipe> favoriteRecipes = _repo.GetAccountFavorites(userId);
       return favoriteRecipes;
     }
+
+    internal string RemoveRecipeFav(int id, string userId)
+    {
+      Favorite favorite = _repo.GetOne(id);
+      if (favorite == null) throw new Exception($"no fav at this id: {id}");
+      if (favorite.AccountId != userId) throw new Exception("Not your fav bruh");
+      _repo.Remove(id);
+      return "you left, now you eat ALONE!";
+    }
   }
 }

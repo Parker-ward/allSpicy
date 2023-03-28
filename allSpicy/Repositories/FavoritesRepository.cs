@@ -55,5 +55,27 @@ namespace allSpicy.Repositories
       }, new { userId }).ToList();
       return favoriteRecipes;
     }
+
+    internal Favorite GetOne(int id)
+    {
+      string sql = @"
+      SELECT
+      *
+      FROM favorites
+      WHERE id = @id;
+      ";
+      Favorite favorite = _db.Query<Favorite>(sql, new { id }).FirstOrDefault();
+      return favorite;
+    }
+
+    public int Remove(int id)
+    {
+      string sql = @"
+      DELETE FROM favorites
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, new { id });
+      return rows;
+    }
   }
 }
