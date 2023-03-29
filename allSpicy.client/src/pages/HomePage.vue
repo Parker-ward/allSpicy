@@ -12,7 +12,7 @@
   <div class="container-fluid">
     <div class="row">
       <div v-for="r in recipes" class="col-md-4">
-        <RecipeCard :recipes="r" />
+        <RecipeCard :recipe="r" />
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ import RecipeCard from '../components/RecipeCard.vue';
 export default {
   setup() {
     onMounted(() => {
-      getRecipes();
+      getRecipes()
     });
     async function getRecipes() {
       try {
@@ -44,7 +44,7 @@ export default {
       recipes: computed(() => AppState.recipes)
     };
   },
-  components: { RecipeCard, RecipeCard }
+  components: { RecipeCard }
 }
 </script>
 
