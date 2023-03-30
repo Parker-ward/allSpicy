@@ -1,5 +1,18 @@
 <template>
-  <div class="container-fluid">
+  <div v-if="recipe" class="container-fluid">
+    <div class="row bg-img">
+      <div class="col-md-12 bg-img text-center" :style="`background-image: url(${recipe.img})`">
+        <img :src="recipe.creator.picture" class="rounded-circle" alt="">
+        <h2 class="text-light">{{ recipe.creator.name }}</h2>
+      </div>
+      <div>
+        <h3 class="text-dark text-center"> {{ recipe.title }}</h3>
+        <div class="elevation-2 my-3 bg-dark">
+          <h1 class="text-light text-center"> <b>INSTRUCTIONS:</b></h1>
+          <h3 class="text-light text-center">{{ recipe.instructions }}</h3>
+        </div>
+      </div>
+    </div>
     Recipes detail page
   </div>
 </template>
@@ -37,4 +50,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+</style>
