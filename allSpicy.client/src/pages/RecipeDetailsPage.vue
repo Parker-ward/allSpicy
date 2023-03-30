@@ -6,9 +6,12 @@
         <h2 class="text-light">{{ recipe.creator.name }}</h2>
       </div>
       <div>
-        <h3 class="text-dark text-center"> {{ recipe.title }}</h3>
-        <div class="elevation-2 my-3 bg-dark">
-          <h1 class="text-light text-center"> <b>INSTRUCTIONS:</b></h1>
+        <div class="text-dark text-center">
+          <h1> TITLE: </h1>
+          <h3 class="text-dark text-center"> {{ recipe.title }}</h3>
+        </div>
+        <div class="elevation-2 my-3 bg-dark rounded">
+          <h1 class="text-light text-center"> INSTRUCTIONS:</h1>
           <h3 class="text-light text-center">{{ recipe.instructions }}</h3>
         </div>
       </div>
